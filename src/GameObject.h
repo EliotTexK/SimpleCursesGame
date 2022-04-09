@@ -13,7 +13,8 @@ struct GameObject : EventReciever {
     MapHandler* mapHandler;
     EventHandler* eventHandler;
     std::string getDescription();
-    GameObject(int _x, int _y, char _display, MapHandler* mapHandler, EventHandler* eventHandler);
+    GameObject(int _x, int _y, char _display, MapHandler* mapHandler,
+               EventHandler* eventHandler);
     void moveTo(int _x, int _y);
     void moveDir(char dir);
 };
