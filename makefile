@@ -22,4 +22,4 @@ CXXFLAGS += -MMD
 
 clean:
 	rm -r app
-	rm -r 'obj/*'
+	rm -r obj/*
