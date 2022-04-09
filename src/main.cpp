@@ -34,7 +34,7 @@ int main() {
             &eventHandler
         );
         gameObjects.push_back(toAdd);
-        mapHandler.updateMapPosition(toAdd,0,0);
+        mapHandler.addMapPosition(toAdd);
     }
 
     initscr();     // start ncurses

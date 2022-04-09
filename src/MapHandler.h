@@ -17,6 +17,7 @@ class MapHandler {
     Event *eventTimeline[MAX_EVENTS];
     public:
     MapHandler();
+    void addMapPosition(GameObject * gameObject);
     void updateMapPosition(GameObject * gameObject, int xPrev, int yPrev);
     GameObject* getObjectAtPos(int x, int y);
 };
