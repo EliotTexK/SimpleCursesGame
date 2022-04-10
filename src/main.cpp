@@ -7,7 +7,7 @@ using namespace constants;
 void renderMap() {
     for (int x = 0; x < LEVEL_SIZE_X; x++) {
         for (int y = 0; y < LEVEL_SIZE_Y; y++) {
-            GameObject * draw = mapHandler.getObjectAtPos(x,y);
+            GameObject *draw = mapHandler.getObjectAtPos(x, y);
             if (draw != nullptr) {
                 mvaddch(y, x, draw->display);
             } else {
@@ -17,12 +17,8 @@ void renderMap() {
     }
 }
 
-void renderMessage() {
-
-}
-
 int main() {
-    srand(time(NULL)); // seed prng
+    srand(time(NULL));  // seed prng
 
     mapHandler = MapHandler();
     eventHandler = EventHandler();
@@ -30,13 +26,9 @@ int main() {
 
     // add some random objects
     // TODO: refactor into some kind of level-generation object
-    for (int i = 0; i < 10 ; i ++) {
-        Walker *toAdd = new Walker(
-            rand() % LEVEL_SIZE_X,
-            rand() % LEVEL_SIZE_Y,
-            &mapHandler,
-            &eventHandler
-        );
+    for (int i = 0; i < 10; i++) {
+        Walker *toAdd = new Walker(rand() % LEVEL_SIZE_X, rand() % LEVEL_SIZE_Y,
+                                   &mapHandler, &eventHandler);
         gameObjects.push_back(toAdd);
         mapHandler.addMapPosition(toAdd);
     }
@@ -44,19 +36,18 @@ int main() {
     initscr();      // start ncurses
     start_color();  // start color mode
     curs_set(0);    // don't display the cursor
-    noecho();       
-    cbreak();       
+    noecho();
+    cbreak();
 
     // game loop
     while (true) {
         renderMap();
-        renderMessage();
         refresh();
         // inputHandler can decide whether or not to quit the game
         if (inputHandler.recieveInput(getch())) break;
         eventHandler.progressTime();
     }
-    endwin(); // end ncurses
+    endwin();  // end ncurses
 }
 
 #endif
