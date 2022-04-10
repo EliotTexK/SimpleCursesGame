@@ -6,19 +6,9 @@
 #include "constants.h"
 #include "GameObject.cpp"
 #include "InputHandler.cpp"
-#include "MapHandler.cpp"
-#include "EventHandler.cpp"
-#include "MessageHandler.cpp"
+#include "MapHandler.h"
+#include "EventHandler.h"
+#include "MessageHandler.h"
 #include "Walker.cpp"
-
-std::vector<GameObject*> gameObjects;
-MapHandler mapHandler;
-EventHandler eventHandler;
-InputHandler inputHandler;
-MessageHandler MessageHandler;
-
-
-void render();
-int main();
 
 #endif

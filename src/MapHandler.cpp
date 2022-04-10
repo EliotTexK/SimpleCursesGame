@@ -4,24 +4,23 @@
 #include "MapHandler.h"
 using namespace constants;
 
-inline MapHandler::MapHandler() {
+GameObject* MapHandler::gameMap[LEVEL_SIZE_X][LEVEL_SIZE_Y];
+unsigned int MapHandler::currentTime = 0;
+
+void MapHandler::initMap() {
     // initialize array of map locations
     for (int x = 0; x < LEVEL_SIZE_X; x++) {
         for (int y = 0; y < LEVEL_SIZE_Y; y++) {
             gameMap[x][y] = nullptr;
         }
     }
-    // initialize array of events
-    for (int i = 0; i < MAX_EVENTS; i++) {
-        eventTimeline[i] = nullptr;
-    }
 }
 
-inline void MapHandler::addMapPosition(GameObject *gameObject) {
+void MapHandler::addMapPosition(GameObject *gameObject) {
     gameMap[gameObject->x][gameObject->y] = gameObject;
 }
 
-inline void MapHandler::updateMapPosition(GameObject *gameObject, int xPrev,
+void MapHandler::updateMapPosition(GameObject *gameObject, int xPrev,
                                           int yPrev) {
     // GameObject should check for OOB itself when moving
     // Yeah, we might have issues if there's multiple objects in the same space,
@@ -30,7 +29,7 @@ inline void MapHandler::updateMapPosition(GameObject *gameObject, int xPrev,
     addMapPosition(gameObject);
 }
 
-inline GameObject *MapHandler::getObjectAtPos(int x, int y) {
+GameObject *MapHandler::getObjectAtPos(int x, int y) {
     // check for out-of-bounds
     if (checkForOOB(x, y)) {
         return nullptr;

@@ -4,17 +4,19 @@
 #include "EventHandler.h"
 using namespace constants;
 
-inline EventHandler::EventHandler()
-{
-    // initialize array of events
+unsigned int EventHandler::currentTime = 0;
+Event* EventHandler::eventTimeline[MAX_EVENTS];
+
+void EventHandler::initEventTimeline() {
     for (int i = 0; i < MAX_EVENTS; i++) {
         eventTimeline[i] = nullptr;
     }
 }
 
+
 // probably call this from the "player", or whatever instance is
 // "observing" the game world
-inline void EventHandler::progressTime()
+void EventHandler::progressTime()
 {
     currentTime ++;
     for (int i = 0; i < MAX_EVENTS; i++)
@@ -39,7 +41,7 @@ inline void EventHandler::progressTime()
 // TODO: sort the event timeline by globalTime. This way,
 // it's easier to know where to put new events, and so that
 // the game loop becomes far more efficient
-inline void EventHandler::addEvent(Event *ev)
+void EventHandler::addEvent(Event *ev)
 {
     ev->globalTime = currentTime + ev->time;
     for (int i = 0; i < MAX_EVENTS; i++) {

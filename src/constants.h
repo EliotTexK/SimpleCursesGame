@@ -5,7 +5,11 @@ namespace constants {
 constexpr unsigned int LEVEL_SIZE_X = 60;
 constexpr unsigned int LEVEL_SIZE_Y = 30;
 constexpr unsigned int MAX_SPACE = 5;
-constexpr unsigned int MAX_EVENTS = 40;
+constexpr unsigned int MAX_EVENTS = 200;
+
+inline bool checkForOOB(int x, int y) {
+    return (x >= LEVEL_SIZE_X || x < 0 || y >= LEVEL_SIZE_Y || y < 0);
+}
 
 enum Directions {
     right,
@@ -31,8 +35,5 @@ enum Colors {
     white
 };
 
-inline bool checkForOOB(int x, int y) {
-    return (x >= LEVEL_SIZE_X || x < 0 || y >= LEVEL_SIZE_Y || y < 0);
-}
 }  // namespace constants
 #endif

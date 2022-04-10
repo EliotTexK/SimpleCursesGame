@@ -3,7 +3,7 @@
 
 class InputHandler {
     public:
-    bool recieveInput(int input);
+    static bool recieveInput(int input);
 };
 
 #endif

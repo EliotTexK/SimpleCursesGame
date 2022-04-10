@@ -3,19 +3,12 @@
 
 #include "GameObject.h"
 
-#include "EventHandler.h"
-#include "MapHandler.h"
-#include "constants.h"
 using namespace constants;
 
-inline GameObject::GameObject(int _x, int _y, char _display,
-                              MapHandler *_mapHandler,
-                              EventHandler *_eventHandler) {
+inline GameObject::GameObject(int _x, int _y, char _display) {
     x = _x;
     y = _y;
     display = _display;
-    mapHandler = _mapHandler;
-    eventHandler = _eventHandler;
 }
 
 inline void GameObject::moveTo(int _x, int _y) {
@@ -26,7 +19,7 @@ inline void GameObject::moveTo(int _x, int _y) {
     int yPrev = y;
     x = _x;
     y = _y;
-    mapHandler->updateMapPosition(this, xPrev, yPrev);
+    MapHandler::updateMapPosition(this, xPrev, yPrev);
 }
 
 inline void GameObject::moveDir(char dir) {

@@ -1,10 +1,5 @@
-#ifndef EVENT_CPP
-#define EVENT_CPP
-
-#include <iostream>
-#include <vector>
-
-#include "constants.h"
+#ifndef EVENT_H
+#define EVENT_H
 
 // forward declare
 class EventReciever;

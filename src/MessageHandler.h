@@ -1,17 +1,17 @@
 #ifndef MESSAGE_HANDLER_H
 #define MESSAGE_HANDLER_H
 
+#include <curses.h>
 #include <string>
-#include <ncurses.h>
 #include "constants.h"
-
-WINDOW *messageWindow;
+using namespace constants;
 
 class MessageHandler {
-    public:
-    MessageHandler();
-    void print(std::string message);
-    void print();
+    static WINDOW* messageWindow;
+
+   public:
+    static void init();
+    static void print(std::string message);
 };
 
 #endif

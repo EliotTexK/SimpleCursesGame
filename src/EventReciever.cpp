@@ -1,7 +1,7 @@
 #ifndef EVENT_RECIEVER_CPP
 #define EVENT_RECIEVER_CPP
 
-#include "Event.cpp"
+#include "Event.h"
 #include "constants.h"
 using namespace constants;
 
