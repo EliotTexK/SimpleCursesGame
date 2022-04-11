@@ -10,5 +10,6 @@
 #include "EventHandler.h"
 #include "MessageHandler.h"
 #include "Walker.cpp"
+#include "Controllable.h"
 
 #endif

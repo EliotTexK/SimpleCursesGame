@@ -4,7 +4,7 @@
 #include "GameObject.h"
 using namespace constants;
 
-struct GameObject;
+class GameObject;
 
 // Static accessible.
 class MapHandler {

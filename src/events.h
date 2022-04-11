@@ -4,7 +4,16 @@
 // what IDs correspond to what events
 enum EventIDs {
     wander,
-    nothing
+    moveDirection,
+    nothing,
+    makeDecision
+};
+
+enum InputIDs {
+    moveLeft,
+    moveRight,
+    moveUp,
+    moveDown
 };
 
 #endif
