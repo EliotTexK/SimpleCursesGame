@@ -39,7 +39,6 @@ int main() {
     for (int i = 0; i < 1; i++) {
         Wanderer *toAdd = new Wanderer(rand() % LEVEL_SIZE_X, rand() % LEVEL_SIZE_Y);
         gameObjects.push_back(toAdd);
-        MapHandler::addMapPosition(toAdd);
     }
 
     // add the player
