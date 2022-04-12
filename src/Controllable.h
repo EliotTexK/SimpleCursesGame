@@ -1,15 +1,15 @@
 #ifndef CONTROLLABLE_H
 #define CONTROLLABLE_H
 
-#include "GameObject.h"
+#include "MapObject.h"
 #include "EventHandler.h"
 #include "events.h"
 
-struct Controllable : GameObject {
+struct Controllable : MapObject {
     Controllable();
     Controllable(int _x, int _y);
     void recieveInput(int input);
-    void recieveEvent(Event* ev);
+    void procEvent(Event* ev);
 };
 
 #endif

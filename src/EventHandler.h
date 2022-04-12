@@ -2,7 +2,7 @@
 #define EVENT_HANDLER_H
 
 #include "Event.h"
-#include "GameObject.h"
+#include "MapObject.h"
 using namespace constants;
 
 // A singleton. All objects that import EventHandler
@@ -14,7 +14,7 @@ class EventHandler {
 
    public:
     static void initEventTimeline();
-    static void progressTime();
+    static void progressTime(char time);
     static void addEvent(Event *ev);
 };
 

@@ -4,12 +4,14 @@
 #include <string>
 
 #include "Event.h"
-#include "GameObject.h"
+#include "MapObject.h"
 #include "MessageHandler.h"
 #include "events.h"
 
-struct Walker : GameObject {
-    void recieveEvent(Event* ev) {
+struct Wanderer : MapObject {
+
+
+    void procEvent(Event* ev) {
         if (ev->eventID == EventIDs::wander) {
             char dir = rand() % 8;
             moveDir(dir);
@@ -17,17 +19,14 @@ struct Walker : GameObject {
             produceRandomMessage();
         }
     }
-    Walker(int _x, int _y)
-        : GameObject(_x, _y, 'W') {
-        sendNewWanderEvent();
-    }
+    Wanderer(int _x, int _y) : MapObject(_x, _y, 'W') { sendNewWanderEvent(); }
 
    private:
     void sendNewWanderEvent() {
         Event* ev = new Event();
         ev->eventID = EventIDs::wander;
         ev->target = this;
-        ev->time = (rand() % 2) + 1;
+        ev->localTime = (rand() % 3) + 2;
         EventHandler::addEvent(ev);
     }
     void produceRandomMessage() {

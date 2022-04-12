@@ -1,17 +1,18 @@
 #ifndef GAME_OBJECT_CPP
 #define GAME_OBJECT_CPP
 
-#include "GameObject.h"
+#include "MapObject.h"
 
 using namespace constants;
 
-inline GameObject::GameObject(int _x, int _y, char _display) {
+inline MapObject::MapObject(int _x, int _y, char _display) {
     x = _x;
     y = _y;
     display = _display;
+    incrementConnections();
 }
 
-inline void GameObject::moveTo(int _x, int _y) {
+inline void MapObject::moveTo(int _x, int _y) {
     if (checkForOOB(_x, _y)) {
         return;
     }
@@ -22,7 +23,7 @@ inline void GameObject::moveTo(int _x, int _y) {
     MapHandler::updateMapPosition(this, xPrev, yPrev);
 }
 
-inline void GameObject::moveDir(char dir) {
+inline void MapObject::moveDir(char dir) {
     if (dir > 7) {
         return;
     }

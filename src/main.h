@@ -4,7 +4,7 @@
 #include <ncurses.h>
 #include <vector>
 #include "constants.h"
-#include "GameObject.cpp"
+#include "MapObject.cpp"
 #include "InputHandler.cpp"
 #include "MapHandler.h"
 #include "EventHandler.h"
