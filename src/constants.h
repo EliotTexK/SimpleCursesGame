@@ -4,6 +4,8 @@
 namespace constants {
 constexpr unsigned int LEVEL_SIZE_X = 60;
 constexpr unsigned int LEVEL_SIZE_Y = 30;
+constexpr unsigned int SCREEN_SIZE_X = 60;
+constexpr unsigned int SCREEN_SIZE_Y = 30;
 constexpr unsigned int MAX_SPACE = 5;
 constexpr unsigned int MAX_EVENTS = 200;
 

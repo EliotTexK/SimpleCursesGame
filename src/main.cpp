@@ -4,7 +4,6 @@
 #include "main.h"
 using namespace constants;
 
-std::vector<MapObject *> gameObjects;
 Controllable player;
 
 int main() {
@@ -24,20 +23,18 @@ int main() {
     // add some random objects
     // TODO: refactor into some kind of level-generation
     for (int i = 0; i < 1; i++) {
-        Wanderer *toAdd = new Wanderer(rand() % LEVEL_SIZE_X, rand() % LEVEL_SIZE_Y);
-        gameObjects.push_back(toAdd);
+        new Wanderer(rand() % LEVEL_SIZE_X, rand() % LEVEL_SIZE_Y);
     }
 
     // add the player
     player = Controllable(rand() % LEVEL_SIZE_X, rand() % LEVEL_SIZE_Y);
-    MapHandler::addMapPosition(&player);
 
     // don't pass in an object before you instantiate it
     InputHandler::init(&player);
 
     // game loop
     while (true) {
-        RenderHandler::renderMap();
+        RenderHandler::renderMap(player.x, player.y);
         // inputHandler can decide whether or not to quit the game
         if (InputHandler::recieveInput()) break;
         // Time progresses according to the "player", or whatever object's

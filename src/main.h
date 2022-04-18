@@ -9,7 +9,7 @@
 #include "MapHandler.h"
 #include "EventHandler.h"
 #include "MessageHandler.h"
-#include "RenderHandler.cpp"
+#include "RenderHandler.h"
 #include "Walker.cpp"
 #include "Controllable.h"
 

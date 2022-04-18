@@ -10,7 +10,7 @@ inline MapObject::MapObject(int _x, int _y, char _display) {
     y = _y;
     display = _display;
     incrementConnections();
-    MapHandler::addMapPosition(this);
+    MapHandler::addNewMapObject(this);
 }
 
 inline void MapObject::moveTo(int _x, int _y) {

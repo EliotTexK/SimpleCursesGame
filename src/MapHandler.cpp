@@ -4,6 +4,7 @@
 #include "MapHandler.h"
 using namespace constants;
 
+std::vector<MapObject *> MapHandler::gameObjects;
 MapObject* MapHandler::gameMap[LEVEL_SIZE_X][LEVEL_SIZE_Y];
 unsigned int MapHandler::currentTime = 0;
 static int highlightX = -1;
@@ -16,6 +17,11 @@ void MapHandler::initMap() {
             gameMap[x][y] = nullptr;
         }
     }
+}
+
+void MapHandler::addNewMapObject(MapObject *gameObject) {
+    gameObjects.push_back(gameObject);
+    addMapPosition(gameObject);
 }
 
 void MapHandler::addMapPosition(MapObject *gameObject) {

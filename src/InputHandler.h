@@ -3,13 +3,14 @@
 
 #include "Controllable.h"
 #include "MapHandler.h"
-#include "RenderHandler.cpp"
+#include "RenderHandler.h"
 #include <vector>
 #include <ncurses.h>
 #include "constants.h"
 
 class InputHandler {
     static Controllable * control;
+    static std::vector<MapObject *> gameObjects;
     public:
     static void init(Controllable * _control);
     static bool recieveInput();
