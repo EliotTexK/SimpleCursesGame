@@ -2,7 +2,11 @@
 #define INPUT_HANDLER_H
 
 #include "Controllable.h"
+#include "MapHandler.h"
+#include "RenderHandler.cpp"
+#include <vector>
 #include <ncurses.h>
+#include "constants.h"
 
 class InputHandler {
     static Controllable * control;

@@ -7,19 +7,6 @@ using namespace constants;
 std::vector<MapObject *> gameObjects;
 Controllable player;
 
-void renderMap() {
-    for (int x = 0; x < LEVEL_SIZE_X; x++) {
-        for (int y = 0; y < LEVEL_SIZE_Y; y++) {
-            MapObject *draw = MapHandler::getObjectAtPos(x, y);
-            if (draw != nullptr) {
-                mvaddch(y, x, draw->display);
-            } else {
-                mvaddch(y, x, '.');
-            }
-        }
-    }
-}
-
 int main() {
     srand(time(NULL));  // seed prng
 
@@ -29,7 +16,7 @@ int main() {
     noecho();       // don't echo input characters to the terminal
     cbreak();       // don't buffer characters before carriage return
 
-    // init MessageHandler after starting ncurses!
+    // MessageHandler and InputHandler must be initiated after ncurses
     MessageHandler::init();
     MapHandler::initMap();
     EventHandler::initEventTimeline();
@@ -45,18 +32,21 @@ int main() {
     player = Controllable(rand() % LEVEL_SIZE_X, rand() % LEVEL_SIZE_Y);
     MapHandler::addMapPosition(&player);
 
-    // you MUST make sure to instantiate the player before you call InputHandler::itit
+    // don't pass in an object before you instantiate it
     InputHandler::init(&player);
 
     // game loop
     while (true) {
-        renderMap();
-        refresh();
+        RenderHandler::renderMap();
         // inputHandler can decide whether or not to quit the game
         if (InputHandler::recieveInput()) break;
-        // ideally, time should progress according to the "player",
-        // or whoever's "frame of reference" we are viewing the game from
-        // EventHandler::progressTime();
+        // Time progresses according to the "player", or whatever object's
+        // "frame of reference" we are viewing the game from. The input handler
+        // will have one such object, of type "Controllable". InputHandler will
+        // call the Controllable instance's "recieveInput". Based on the designated
+        // action, the Controllable will tell the EventHandler to progress time,
+        // according to the amount of time it takes for its next action to occur
+        // (represented as an event on the event timeline).
     }
     endwin();  // end ncurses
 }

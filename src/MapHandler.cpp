@@ -6,6 +6,8 @@ using namespace constants;
 
 MapObject* MapHandler::gameMap[LEVEL_SIZE_X][LEVEL_SIZE_Y];
 unsigned int MapHandler::currentTime = 0;
+static int highlightX = -1;
+static int highlightY = -1;
 
 void MapHandler::initMap() {
     // initialize array of map locations

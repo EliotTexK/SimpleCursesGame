@@ -5,12 +5,14 @@
 
 inline Controllable* InputHandler::control;
 
+// Make sure that when you call this, _control has been instantiated
 inline void InputHandler::init(Controllable * _control) {
     control = _control;
 }
 
 // Called by the main game loop. True means 'quit game'.
 inline bool InputHandler::recieveInput() {
+    RenderHandler::highlight(control->x, control->y, control->display);
     int input = getch();
     switch (input) {
         case 'q':
