@@ -11,6 +11,7 @@
 class InputHandler {
     static Controllable * control;
     static std::vector<MapObject *> gameObjects;
+    static char createMenu(std::vector<std::string> elements);
     public:
     static void init(Controllable * _control);
     static bool recieveInput();

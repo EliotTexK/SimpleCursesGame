@@ -6,9 +6,7 @@
 inline Controllable* InputHandler::control;
 
 // Make sure that when you call this, _control has been instantiated
-inline void InputHandler::init(Controllable * _control) {
-    control = _control;
-}
+inline void InputHandler::init(Controllable* _control) { control = _control; }
 
 // Called by the main game loop. True means 'quit game'.
 inline bool InputHandler::recieveInput() {
@@ -19,21 +17,78 @@ inline bool InputHandler::recieveInput() {
             // quit game
             return true;
             break;
-        case 'w':
+        case KEY_UP:
             control->recieveInput(InputIDs::moveUp);
             break;
-        case 's':
+        case KEY_DOWN:
             control->recieveInput(InputIDs::moveDown);
             break;
-        case 'a':
+        case KEY_LEFT:
             control->recieveInput(InputIDs::moveLeft);
             break;
-        case 'd':
+        case KEY_RIGHT:
             control->recieveInput(InputIDs::moveRight);
+            break;
+        case 'm':
+            char choice = createMenu(std::vector<std::string>{
+                "option1", "option2", "option3", "option4", "option5"});
             break;
     }
 
     return false;
+}
+
+// takes an ordered list of menu options and creates a menu
+// returns the index of the selected option, or -1 for no option
+inline char InputHandler::createMenu(std::vector<std::string> options) {
+    char output = 0;
+    char select = 0;
+    unsigned char len = options.size();
+    WINDOW* menuWindow = newwin(len, LEVEL_SIZE_X, LEVEL_SIZE_Y, 0);
+    keypad(menuWindow,true); // you have to specify this or arrow keys will not work
+
+    // loop until a selection is made, or quit out
+    bool madeSelection = false;
+    while (!madeSelection) {
+        // print the menu
+        werase(menuWindow);
+        for (char i = 0; i < len; i++) {
+            std::string option = options.at(i);
+            if (i == select) {
+                wattron(menuWindow, A_REVERSE);
+            }
+            wprintw(menuWindow, option.c_str());
+            wprintw(menuWindow, "\n");
+            wattroff(menuWindow, A_REVERSE);
+        }
+        wrefresh(menuWindow);
+        // get inputs for scrolling up/down, or selecting an option
+        wrefresh(menuWindow);
+        switch (getch()) {
+            case KEY_UP:
+                if (select > 0) select--;
+                break;
+            case KEY_DOWN:
+                if (select < len - 1) select++;
+                break;
+            case KEY_ENTER:
+            case 10:    // ten is ASCII return, as opposed to KEY_ENTER, which is on the keypad
+                output = select;
+                madeSelection = true;
+                break;
+            case 27:    // ASCII ESC
+            case 'q':
+                output = -1;
+                madeSelection = true;
+                break;
+        }
+    }
+    // we're done, delete the window
+    werase(menuWindow);
+    wrefresh(menuWindow);
+    delwin(menuWindow);
+
+    return output;
 }
 
 #endif

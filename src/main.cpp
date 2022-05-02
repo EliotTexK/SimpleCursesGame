@@ -9,11 +9,12 @@ Controllable player;
 int main() {
     srand(time(NULL));  // seed prng
 
-    initscr();      // start ncurses
-    start_color();  // start color mode
-    curs_set(0);    // don't display the cursor
-    noecho();       // don't echo input characters to the terminal
-    cbreak();       // don't buffer characters before carriage return
+    initscr();              // start ncurses
+    start_color();          // start color mode
+    curs_set(0);            // don't display the cursor
+    noecho();               // don't echo input characters to the terminal
+    cbreak();               // don't buffer characters before carriage return
+    keypad(stdscr,true);    // you must add this line or arrow keys won't work
 
     // MessageHandler and InputHandler must be initiated after ncurses
     MessageHandler::init();
@@ -29,7 +30,7 @@ int main() {
     // add the player
     player = Controllable(rand() % LEVEL_SIZE_X, rand() % LEVEL_SIZE_Y);
 
-    // don't pass in an object before you instantiate it
+    // don't pass an object to InputHandler before you instantiate the object!
     InputHandler::init(&player);
 
     // game loop
