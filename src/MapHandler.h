@@ -2,6 +2,7 @@
 #define MAP_HANDLER_H
 
 #include "MapObject.h"
+#include "LevelGen.cpp"
 using namespace constants;
 
 class MapObject;

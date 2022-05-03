@@ -12,9 +12,15 @@ static int highlightY = -1;
 
 void MapHandler::initMap() {
     // initialize array of map locations
+    LevelGen lg = LevelGen();
+    lg.marchingSquares(2,2);
     for (int x = 0; x < LEVEL_SIZE_X; x++) {
         for (int y = 0; y < LEVEL_SIZE_Y; y++) {
-            gameMap[x][y] = nullptr;
+            if (lg.level[x][y]) {
+                new MapObject(x,y,'#');
+            } else {
+                gameMap[x][y] = nullptr;
+            }
         }
     }
 }

@@ -44,7 +44,7 @@ inline char InputHandler::createMenu(std::vector<std::string> options) {
     char output = 0;
     char select = 0;
     unsigned char len = options.size();
-    WINDOW* menuWindow = newwin(len, LEVEL_SIZE_X, LEVEL_SIZE_Y, 0);
+    WINDOW* menuWindow = newwin(len, 20, 0, LEVEL_SIZE_X);
     keypad(menuWindow,true); // you have to specify this or arrow keys will not work
 
     // loop until a selection is made, or quit out
@@ -72,11 +72,11 @@ inline char InputHandler::createMenu(std::vector<std::string> options) {
                 if (select < len - 1) select++;
                 break;
             case KEY_ENTER:
-            case 10:    // ten is ASCII return, as opposed to KEY_ENTER, which is on the keypad
+            case 10:    // 10 = ASCII return, as opposed to KEY_ENTER, which is on the keypad
                 output = select;
                 madeSelection = true;
                 break;
-            case 27:    // ASCII ESC
+            case 27:    // 27 = ASCII ESC
             case 'q':
                 output = -1;
                 madeSelection = true;

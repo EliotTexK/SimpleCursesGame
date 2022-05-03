@@ -5,6 +5,7 @@
 
 using namespace constants;
 
+// objects will automatically be added on creation
 inline MapObject::MapObject(int _x, int _y, char _display) {
     x = _x;
     y = _y;
