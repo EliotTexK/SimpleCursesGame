@@ -35,7 +35,6 @@ int main() {
 
     // game loop
     while (true) {
-        RenderHandler::renderMap(player.x, player.y);
         // inputHandler can decide whether or not to quit the game
         if (InputHandler::recieveInput()) break;
         // Time progresses according to the "player", or whatever object's

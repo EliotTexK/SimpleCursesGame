@@ -5,7 +5,7 @@
 #include "MapObject.h"
 using namespace constants;
 
-// A singleton. All objects that import EventHandler
+// All objects that import EventHandler
 // have access to a timeLine to "post" events that will
 // occur after a certain amount of time.
 class EventHandler {

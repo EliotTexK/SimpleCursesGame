@@ -28,6 +28,8 @@ void EventHandler::progressTime(char time) {
             }
             if (ev->globalTime == currentTime) {
                 ev->target->recieveEvent(ev);
+                // pending events decrement when events are recieved
+                ev->target->pendingEvents--;
                 delete ev;
                 eventTimeline[i] = nullptr;
             }
@@ -39,6 +41,9 @@ void EventHandler::progressTime(char time) {
 // it's easier to know where to put new events, and so that
 // the game loop becomes far more efficient
 void EventHandler::addEvent(Event* ev) {
+    // increment pending events for the eventReciever in question,
+    // so that we can know whether or not we can safely delete it
+    ev->target->pendingEvents++;
     ev->globalTime = currentTime + ev->localTime;
     for (int i = 0; i < MAX_EVENTS; i++) {
         if (eventTimeline[i] == nullptr) {

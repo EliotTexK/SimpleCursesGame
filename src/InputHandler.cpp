@@ -10,6 +10,7 @@ inline void InputHandler::init(Controllable* _control) { control = _control; }
 
 // Called by the main game loop. True means 'quit game'.
 inline bool InputHandler::recieveInput() {
+    RenderHandler::renderMap(control->x, control->y);
     RenderHandler::highlight(control->x, control->y, control->display);
     int input = getch();
     switch (input) {
