@@ -33,8 +33,9 @@ void EventHandler::progressTime(char time) {
                 }
                 // pending events decrement when events are recieved
                 ev->target->pendingEvents--;
+
                 // if the target is marked for deletion and has no pending events, delete it
-                if (ev->target->toDelete && ev->target->pendingEvents == 0) {
+                if (ev->target->toDelete && ev->target->pendingEvents <= 0) {
                     delete ev->target;
                 }
                 delete ev;

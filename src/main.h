@@ -10,7 +10,7 @@
 #include "EventHandler.h"
 #include "MessageHandler.h"
 #include "RenderHandler.h"
-#include "Walker.cpp"
+#include "Wanderer.cpp"
 #include "Controllable.h"
 
 #endif

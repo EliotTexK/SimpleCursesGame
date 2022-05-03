@@ -23,7 +23,7 @@ int main() {
 
     // add some random objects
     // TODO: refactor into some kind of level-generation
-    for (int i = 0; i < 1; i++) {
+    for (int i = 1; i < 5; i++) {
         new Wanderer(rand() % LEVEL_SIZE_X, rand() % LEVEL_SIZE_Y);
     }
 
