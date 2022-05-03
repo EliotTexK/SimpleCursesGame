@@ -69,4 +69,8 @@ inline std::string MapObject::getDescription() {
     return "Tabula Rasa...";
 };
 
+inline MapObject::~MapObject() {
+    MapHandler::removeMapObject(this);
+}
+
 #endif

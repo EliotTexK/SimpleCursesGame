@@ -32,7 +32,19 @@ inline bool InputHandler::recieveInput() {
             break;
         case 'm':
             char choice = createMenu(std::vector<std::string>{
-                "option1", "option2", "option3", "option4", "option5"});
+                "option0", "option1", "option2", "option3", "destroy everything"});
+            if (choice == 4) {
+                for (int x = 0; x < LEVEL_SIZE_X; x++) {
+                    for (int y = 0; y < LEVEL_SIZE_Y; y++) {
+                        MapObject *obj = MapHandler::getObjectAtPos(x,y);
+                        if (obj != nullptr && obj != control) {
+                            obj->decrementConnections();
+                        }
+                    }
+                }
+                // test to see if pending events are discarded
+                EventHandler::progressTime(10);
+            }
             break;
     }
 

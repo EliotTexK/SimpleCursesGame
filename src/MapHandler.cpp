@@ -52,4 +52,10 @@ MapObject *MapHandler::getObjectAtPos(int x, int y) {
     }
 }
 
+void MapHandler::removeMapObject(MapObject *gameObject) {
+    if (getObjectAtPos(gameObject->x,gameObject->y) == gameObject) {
+        gameMap[gameObject->x][gameObject->y] = nullptr;
+    }
+}
+
 #endif

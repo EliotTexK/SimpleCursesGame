@@ -24,6 +24,7 @@ struct MapObject : public ContainerObject {
     // override this if you want collision
     void moveTo(int _x, int _y);
     void moveDir(char dir);
+    virtual ~MapObject();
 };
 
 #endif

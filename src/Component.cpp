@@ -27,6 +27,7 @@ class Component : public EventReciever {
             }
         }
     }
+    // my implementation of a safe delete
     void decrementConnections() {
         connections--;
         if (connections <= 0) {

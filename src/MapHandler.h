@@ -19,6 +19,7 @@ class MapHandler {
     static void addMapPosition(MapObject *gameObject);
     static void updateMapPosition(MapObject *gameObject, int xPrev, int yPrev);
     static MapObject *getObjectAtPos(int x, int y);
+    static void removeMapObject(MapObject *gameObject);
 };
 
 #endif
