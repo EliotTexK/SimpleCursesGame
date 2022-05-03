@@ -43,6 +43,9 @@ struct Wanderer : MapObject {
                 break;
         }
     }
+    ~Wanderer() {
+        
+    }
 };
 
 #endif

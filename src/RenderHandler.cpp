@@ -16,7 +16,7 @@ void RenderHandler::renderMap(int _centerX, int _centerY) {
             MapObject *draw =
                 MapHandler::getObjectAtPos(centerX - HALF_SCREEN_SIZE_X + x,
                                            centerY - HALF_SCREEN_SIZE_Y + y);
-            if (draw != nullptr) {
+            if (draw != nullptr || draw->toDelete) {
                 mvaddch(y, x, draw->display);
             } else {
                 mvaddch(y, x, '.');

@@ -43,7 +43,7 @@ inline bool InputHandler::recieveInput() {
                     }
                 }
                 // test to see if pending events are discarded
-                EventHandler::progressTime(10);
+                //EventHandler::progressTime(10);
             }
             break;
     }
