@@ -18,16 +18,29 @@ class Component : public EventReciever {
     void incrementConnections() {
         connections++;
         if (connections <= 0) {
-            delete this;
+            // if no pending events exist, delete this
+            // if pending events exist, wait to be deleted by EventHandler
+            if (pendingEvents <= 0) {
+                delete this;
+            } else {
+                toDelete = true;
+            }
         }
     }
     void decrementConnections() {
         connections--;
         if (connections <= 0) {
-            delete this;
+            // if no pending events exist, delete this
+            // if pending events exist, wait to be deleted by EventHandler
+            if (pendingEvents <= 0) {
+                delete this;
+            } else {
+                toDelete = true;
+            }
         }
     }
     virtual void recieveEvent(Event *ev) {};
+    virtual ~Component() {};
 };
 
 #endif

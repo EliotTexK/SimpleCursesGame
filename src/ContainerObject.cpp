@@ -12,14 +12,6 @@
 class ContainerObject : public Component {
     std::vector<Component *> components;
 
-    void wipeComponents() {
-        // just in case a component is referenced by another object, we
-        // don't delete it immediately
-        for (Component *cp : components) {
-            cp->decrementConnections();
-        }
-    }
-
     void sendToComponents(Event *ev) {
         for (Component *cp : components) {
             cp->recieveEvent(ev);
@@ -29,6 +21,14 @@ class ContainerObject : public Component {
     virtual void procEvent(Event * ev) {};
 
    public:
+    void wipeComponents() {
+        // just in case a component is referenced by another object, we
+        // don't delete it immediately
+        for (Component *cp : components) {
+            cp->decrementConnections();
+        }
+    }
+
     void addComponent(Component *cp) {
         cp->incrementConnections();
         components.push_back(cp);
@@ -40,7 +40,7 @@ class ContainerObject : public Component {
         procEvent(ev);
     }
 
-    ~ContainerObject() { wipeComponents(); }
+    virtual ~ContainerObject() { wipeComponents(); }
 };
 
 #endif

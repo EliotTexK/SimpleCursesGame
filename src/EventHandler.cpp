@@ -27,9 +27,16 @@ void EventHandler::progressTime(char time) {
                 eventTimeline[i] = nullptr;
             }
             if (ev->globalTime == currentTime) {
-                ev->target->recieveEvent(ev);
+                // don't recieve events if an object is marked for deletion
+                if (!ev->target->toDelete) {
+                    ev->target->recieveEvent(ev);
+                }
                 // pending events decrement when events are recieved
                 ev->target->pendingEvents--;
+                // if the target is marked for deletion and has no pending events, delete it
+                if (ev->target->toDelete && ev->target->pendingEvents == 0) {
+                    delete ev->target;
+                }
                 delete ev;
                 eventTimeline[i] = nullptr;
             }

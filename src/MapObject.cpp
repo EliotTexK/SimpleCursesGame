@@ -65,4 +65,8 @@ inline void MapObject::moveDir(char dir) {
     moveTo(x + to_x, y + to_y);
 }
 
+inline std::string MapObject::getDescription() {
+    return "Tabula Rasa...";
+};
+
 #endif
